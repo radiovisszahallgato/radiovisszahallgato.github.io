@@ -1,3 +1,136 @@
-<p><img alt="radiovisszahallgato" src="/rvh.png" /></p>
-<p><a href="https://gyorgy.fleischmann.hu/mediaklikk.hu_download.html">tipp</a></p>
-<p><a href="https://hangtar-cdn.connectmedia.hu/20200307090500/20200307094000/mr1.mp3">pl. ezt?</a></p>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+  </style>
+</head>
+
+<body style="
+  margin: 7% 7% 7% 7%;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: smaller
+" onload="calculate()">
+
+<script>
+function g( id ) {
+  return document.getElementById( id );
+}
+
+function fix(s, dflt) {
+  switch (s.length) {
+    case 1:
+        return "0" + s;
+    case 2:
+        return s;
+    default:
+        return "0" + dflt;
+  }
+}
+
+function calculate() {
+
+  g("from").innerHTML =
+    g("year").value +
+    fix(g("month").value, 1) +
+    fix(g("day").value, 1) +
+    fix(g("from-hour").value, 0) +
+    fix(g("from-min").value, 0) +
+    fix(g("from-sec").value, 0);
+
+  g("to").innerHTML =
+    g("year").value +
+    fix(g("month").value, 1) +
+    fix(g("day").value, 1) +
+    fix(g("to-hour").value, 0) +
+    fix(g("to-min").value, 0) +
+    fix(g("to-sec").value, 0);
+}
+
+function play() {
+  station = g("station");
+  location.href =
+    "https://hangtar-cdn.connectmedia.hu/" +
+    g("from").innerHTML +
+    "/" +
+    g("to").innerHTML +
+    "/" +
+    station.options[station.selectedIndex].value +
+    ".mp3";
+}
+</script>
+
+<img alt="radiovisszahallgato" src="rvh.png" width="120"/>
+
+<p>
+Ön is szeretné egyszerűen visszahallgatni a rádióműsorokat,
+de eltéved a <a href="mediaklikk.hu"><code>mediaklikk.hu</code></a>-n?
+</p>
+
+<p>
+<strong>1.</strong>
+Válasszon adót!
+<select id="station">
+  <option value="mr1">Kossuth</option>
+  <option value="mr2">Petőfi</option>
+  <option value="mr3">Bartók</option>
+</select>
+</p>
+
+<p>
+<strong>2.</strong>
+Adja meg a dátumot <em>év-hónap-nap</em> szerint számmal pontosan!
+</p>
+
+<p>
+<input type="text" value="2021" maxlength="4" size="4" id="year" onchange="calculate()" onclick="calculate()"> &ndash;
+<input type="text" maxlength="2" size="2" id="month" onchange="calculate()" onclick="calculate()"> &ndash;
+<input type="text" maxlength="2" size="2" id="day" onchange="calculate()" onclick="calculate()"> &nbsp;&nbsp;
+</p>
+
+<p>
+<strong>3.</strong>
+Adja meg a műsor kezdő és záró időpontját
+<em>óra:perc:másodperc</em> szerint pontosan!
+</p>
+
+<p>
+<input type="text" maxlength="2" size="2" id="from-hour" onchange="calculate()" onclick="calculate()"> :
+<input type="text" maxlength="2" size="2" id="from-min" onchange="calculate()" onclick="calculate()"> :
+<input type="text" maxlength="2" size="2" id="from-sec" onchange="calculate()" onclick="calculate()">
+&nbsp;&ndash;&nbsp;
+<input type="text" maxlength="2" size="2" id="to-hour" onchange="calculate()" onclick="calculate()"> :
+<input type="text" maxlength="2" size="2" id="to-min" onchange="calculate()" onclick="calculate()"> :
+<input type="text" maxlength="2" size="2" id="to-sec" onchange="calculate()" onclick="calculate()">
+-ig
+</p>
+
+<p style="font-size: smaller;">
+&rarr; <span id="from">?</span> .. <span id="to">?</span>
+</p>
+
+<p>
+<strong>4.</strong>
+Katt a
+<button type="button" id="p" onclick="play()">Lejátsz</button>
+gombra!
+</p>
+
+<p>
+Adott műsor elérhetőségéért felelősséget nem vállalunk,
+de általában menni szokott a dolog.
+<br/>
+A friss műsorok általában egy nappal később kerülnek fel.
+</p>
+
+
+<p>
+<a href="https://gyorgy.fleischmann.hu/mediaklikk.hu_download.html">alaptipp innen</a> &ndash; köszönet <code>_flex</code>-nek :)
+<br/>
+&copy; 2021 &ndash; radiovisszahallgato
+&ndash; kontakt: <code>sassbalint kukac gmail pötty hu</code>
+</p>
+
+</body>
+</html>
