@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns#">
 
 <head>
-  <style>
-  </style>
+  <title>radiovisszahallgato</title>
+  <meta property="og:url"           content="https://radiovisszahallgato.github.io" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="radiovisszahallgato" />
+  <meta property="og:description"   content="Időpont alapján hallgathatja vissza az elmúlt pár év rádióműsorait." />
+  <meta property="og:image"         content="https://radiovisszahallgato.github.io/rvh.png" />
 </head>
 
 <body style="
@@ -12,6 +16,14 @@
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: smaller
 " onload="calculate()">
+
+<!-- Facebook JS SDK for like button -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/hu_HU/sdk.js#xfbml=1
+       &version=v11.0"
+  nonce="P6NCuRWJ">
+</script>
 
 <script>
 function g( id ) {
@@ -61,11 +73,16 @@ function play() {
 }
 </script>
 
+<p>
 <img alt="radiovisszahallgato" src="rvh.png" width="120"/>
+</p>
 
 <p>
 Ön is szeretné egyszerűen visszahallgatni a rádióműsorokat,
-de eltéved a <a href="mediaklikk.hu"><code>mediaklikk.hu</code></a>-n?
+de eltéved a <code>mediaklikk.hu</code>-n?
+<br/>
+Ezen az oldalon <em>időpont alapján</em> hallgathatja vissza
+az elmúlt pár év műsorait.
 </p>
 
 <p>
@@ -124,6 +141,15 @@ de általában menni szokott a dolog.
 A friss műsorok általában egy nappal később kerülnek fel.
 </p>
 
+<!-- Facebook like button code -->
+<div class="fb-like"
+  data-href="https://radiovisszahallgato.github.io"
+  data-width="500"
+  data-layout="standard"
+  data-action="recommend"
+  data-size="small"
+  data-share="true">
+</div>
 
 <p>
 <a href="https://gyorgy.fleischmann.hu/mediaklikk.hu_download.html">alaptipp innen</a> &ndash; köszönet <code>_flex</code>-nek :)
