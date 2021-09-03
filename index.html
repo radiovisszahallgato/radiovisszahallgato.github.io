@@ -9,6 +9,15 @@
   <meta property="og:title"         content="radiovisszahallgato" />
   <meta property="og:description"   content="Időpont alapján hallgathatja vissza az elmúlt pár év rádióműsorait." />
   <meta property="og:image"         content="https://radiovisszahallgato.github.io/rvh.png" />
+  <style>
+p.normal {
+  font-weight: normal;
+}
+p.normal-small {
+  font-weight: normal;
+  font-size: small;
+}
+  </style>
 </head>
 
 <body style="
@@ -84,8 +93,10 @@ Ezen az oldalon <em>időpont alapján</em> hallgathatja meg
 az elmúlt pár év adásait.
 </p>
 
-<p>
-<strong>1.</strong>
+<ol style="font-weight: bold">
+
+<li>
+<p class="normal">
 Válasszon adót!
 <select id="station">
   <option value="mr1">Kossuth</option>
@@ -93,45 +104,44 @@ Válasszon adót!
   <option value="mr3">Bartók</option>
 </select>
 </p>
+</li>
 
-<p>
-<strong>2.</strong>
-Adja meg a dátumot <em>év-hónap-nap</em> szerint számmal pontosan!
+<li>
+<p class="normal">
+Adja meg a műsor pontos időpontját!
 </p>
 
-<p>
+<p class="normal">
 <input type="text" value="2021" maxlength="4" size="4" id="year" onchange="calculate()" onclick="calculate()"> &ndash;
-<input type="text" maxlength="2" size="2" id="month" onchange="calculate()" onclick="calculate()"> &ndash;
-<input type="text" maxlength="2" size="2" id="day" onchange="calculate()" onclick="calculate()"> &nbsp;&nbsp;
+<input type="text" placeholder="hó" maxlength="2" size="2" id="month" onchange="calculate()" onclick="calculate()"> &ndash;
+<input type="text" placeholder="nap" maxlength="2" size="2" id="day" onchange="calculate()" onclick="calculate()"> &nbsp;&nbsp;
 </p>
 
-<p>
-<strong>3.</strong>
-Adja meg a műsor kezdő és záró időpontját
-<em>óra:perc:másodperc</em> szerint pontosan!
-</p>
-
-<p>
-<input type="text" maxlength="2" size="2" id="from-hour" onchange="calculate()" onclick="calculate()"> :
-<input type="text" maxlength="2" size="2" id="from-min" onchange="calculate()" onclick="calculate()"> :
-<input type="text" maxlength="2" size="2" id="from-sec" onchange="calculate()" onclick="calculate()">
-&nbsp;&ndash;&nbsp;
-<input type="text" maxlength="2" size="2" id="to-hour" onchange="calculate()" onclick="calculate()"> :
-<input type="text" maxlength="2" size="2" id="to-min" onchange="calculate()" onclick="calculate()"> :
-<input type="text" maxlength="2" size="2" id="to-sec" onchange="calculate()" onclick="calculate()">
+<p class="normal">
+<input type="text" placeholder="óra" maxlength="2" size="2" id="from-hour" onchange="calculate()" onclick="calculate()"> :
+<input type="text" placeholder="perc" maxlength="2" size="2" id="from-min" onchange="calculate()" onclick="calculate()"> :
+<input type="text" placeholder="mp" maxlength="2" size="2" id="from-sec" onchange="calculate()" onclick="calculate()">
+-tól&nbsp;&nbsp;
+<input type="text" placeholder="óra" maxlength="2" size="2" id="to-hour" onchange="calculate()" onclick="calculate()"> :
+<input type="text" placeholder="perc" maxlength="2" size="2" id="to-min" onchange="calculate()" onclick="calculate()"> :
+<input type="text" placeholder="mp" maxlength="2" size="2" id="to-sec" onchange="calculate()" onclick="calculate()">
 -ig
 </p>
 
-<p style="font-size: smaller;">
+<p class="normal-small">
 &rarr; <span id="from">?</span> .. <span id="to">?</span>
 </p>
+</li>
 
-<p>
-<strong>4.</strong>
+<li>
+<p class="normal">
 Katt a
 <button type="button" id="p" onclick="play()">Lejátsz</button>
 gombra!
 </p>
+</li>
+
+</ol>
 
 <p>
 Adott műsor elérhetőségéért felelősséget nem vállalunk,
