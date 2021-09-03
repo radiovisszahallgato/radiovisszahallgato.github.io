@@ -13,9 +13,9 @@
 p.normal {
   font-weight: normal;
 }
-p.normal-small {
+p.normal-smaller {
   font-weight: normal;
-  font-size: small;
+  font-size: 80%;
 }
   </style>
 </head>
@@ -34,6 +34,10 @@ p.normal-small {
 </script>
 
 <script>
+
+var from = "";
+var to = "";
+
 function g( id ) {
   return document.getElementById( id );
 }
@@ -51,7 +55,7 @@ function fix(s, dflt) {
 
 function calculate() {
 
-  g("from").innerHTML =
+  from =
     g("year").value +
     fix(g("month").value, 1) +
     fix(g("day").value, 1) +
@@ -59,25 +63,38 @@ function calculate() {
     fix(g("from-min").value, 0) +
     fix(g("from-sec").value, 0);
 
-  g("to").innerHTML =
+  to =
     g("year").value +
     fix(g("month").value, 1) +
     fix(g("day").value, 1) +
     fix(g("to-hour").value, 0) +
     fix(g("to-min").value, 0) +
     fix(g("to-sec").value, 0);
+
+  // for debugging
+  g("from").innerHTML = from
+  g("to").innerHTML = to
 }
 
 function play() {
   station = g("station");
   location.href =
     "https://hangtar-cdn.connectmedia.hu/" +
-    g("from").innerHTML +
-    "/" +
-    g("to").innerHTML +
-    "/" +
+    from + "/" + to + "/" +
     station.options[station.selectedIndex].value +
     ".mp3";
+}
+
+function switch_display_sec() {
+  if (g("mp1").style.display == "none") {
+    g("mp1").style.display = "inline";
+    g("mp2").style.display = "inline";
+    g("pmp").innerHTML = "perc";
+  } else {
+    g("mp1").style.display = "none";
+    g("mp2").style.display = "none";
+    g("pmp").innerHTML = "másodperc";
+  }
 }
 </script>
 
@@ -112,23 +129,25 @@ Adja meg a műsor pontos időpontját!
 </p>
 
 <p class="normal">
-<input type="text" value="2021" maxlength="4" size="4" id="year" onchange="calculate()" onclick="calculate()"> &ndash;
-<input type="text" placeholder="hó" maxlength="2" size="2" id="month" onchange="calculate()" onclick="calculate()"> &ndash;
-<input type="text" placeholder="nap" maxlength="2" size="2" id="day" onchange="calculate()" onclick="calculate()"> &nbsp;&nbsp;
+<input type="text" value="2021" maxlength="4" size="4" id="year" onchange="calculate()" onclick="calculate()"/> &ndash;
+<input type="text" placeholder="hó" maxlength="2" size="2" id="month" onchange="calculate()" onclick="calculate()"/> &ndash;
+<input type="text" placeholder="nap" maxlength="2" size="2" id="day" onchange="calculate()" onclick="calculate()"/> &nbsp;&nbsp;
 </p>
 
 <p class="normal">
-<input type="text" placeholder="óra" maxlength="2" size="2" id="from-hour" onchange="calculate()" onclick="calculate()"> :
-<input type="text" placeholder="perc" maxlength="2" size="2" id="from-min" onchange="calculate()" onclick="calculate()"> :
-<input type="text" placeholder="mp" maxlength="2" size="2" id="from-sec" onchange="calculate()" onclick="calculate()">
+<input type="text" placeholder="óra" maxlength="2" size="2" id="from-hour" onchange="calculate()" onclick="calculate()"/>
+: <input type="text" placeholder="perc" maxlength="2" size="2" id="from-min" onchange="calculate()" onclick="calculate()"/>
+<span id="mp1" style="display: none">: <input type="text" placeholder="mp" maxlength="2" size="2" id="from-sec" onchange="calculate()" onclick="calculate()"/></span>
 -tól&nbsp;&nbsp;
-<input type="text" placeholder="óra" maxlength="2" size="2" id="to-hour" onchange="calculate()" onclick="calculate()"> :
-<input type="text" placeholder="perc" maxlength="2" size="2" id="to-min" onchange="calculate()" onclick="calculate()"> :
-<input type="text" placeholder="mp" maxlength="2" size="2" id="to-sec" onchange="calculate()" onclick="calculate()">
--ig
+<input type="text" placeholder="óra" maxlength="2" size="2" id="to-hour" onchange="calculate()" onclick="calculate()"/>
+: <input type="text" placeholder="perc" maxlength="2" size="2" id="to-min" onchange="calculate()" onclick="calculate()"/>
+<span id="mp2" style="display: none">: <input type="text" placeholder="mp" maxlength="2" size="2" id="to-sec" onchange="calculate()" onclick="calculate()"/></span>
+-ig&nbsp;&nbsp;
+<span style="font-size: 80%">(váltás <a href="#" onclick="switch_display_sec()"><span id="pmp">másodperc</span></a> pontosságra)</span>
 </p>
 
-<p class="normal-small">
+<!-- for debugging set "display: inline" -->
+<p class="normal-smaller" style="display: none">
 &rarr; <span id="from">?</span> .. <span id="to">?</span>
 </p>
 </li>
