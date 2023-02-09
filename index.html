@@ -96,6 +96,16 @@ function switch_display_sec() {
     g("pmp").innerHTML = "másodperc";
   }
 }
+ 
+function switch_display_download_info() {
+  if (g("download_info").style.display == "none") {
+    g("donwload_info").style.display = "inline";
+    g("download_info_lead").innerHTML = "Eltüntet";
+  } else {
+    g("download_info").style.display = "none";
+    g("download_info_lead").innerHTML = "Amennyiben lejátszás helyett <em>letölteni</em> szeretné a műsorokat, ezt Firefox böngészővel teheti meg egyszerűen.";
+  }
+}
 </script>
 
 <p>
@@ -194,6 +204,9 @@ A friss anyagok általában egy nappal később kerülnek fel.
 </span>
 
 <p>
+<span id="download_info_lead">Lejátszás helyett letölteni szeretne?</span>
+<br/>
+<span id="download_info">
 Amennyiben lejátszás helyett <em>letölteni</em> szeretné a műsorokat, ezt Firefox böngészővel teheti meg egyszerűen.
 <br/>
 Menjen a <a href="about:config"><code>about:config</code></a> oldalra, utána Enter és állítsa a <code>media.play-stand-alone</code> tulajdonságot <code>false</code>-ra.
@@ -203,6 +216,7 @@ Innentől kezdve a műsorok lejátszódás helyett letöltődnek.
 Ez egy globális beállítás, ami minden oldalon, minden médiafájlra vonatkozni fog!
 <br/>
 Chrome és egyéb böngészőkben nem találtunk megoldást erre. Ha Ön talált, kérjük írjon.
+</span>
 </p>
   
 <p>
