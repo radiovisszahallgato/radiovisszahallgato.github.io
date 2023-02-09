@@ -10,10 +10,10 @@
   <meta property="og:description"   content="Időpont alapján hallgathatja vissza az elmúlt pár év rádióműsorait." />
   <meta property="og:image"         content="https://radiovisszahallgato.github.io/image/rvh.png" />
   <style>
-p.normal {
+.normal {
   font-weight: normal;
 }
-p.normal-smaller {
+.normal-smaller {
   font-weight: normal;
   font-size: 80%;
 }
@@ -96,6 +96,16 @@ function switch_display_sec() {
     g("pmp").innerHTML = "másodperc";
   }
 }
+ 
+function switch_display_download_info() {
+  if (g("download_info").style.display == "none") {
+    g("download_info").style.display = "block";
+    g("download_info_lead").innerHTML = "Eltüntet.";
+  } else {
+    g("download_info").style.display = "none";
+    g("download_info_lead").innerHTML = "Lejátszás helyett <em>letölteni<em/> szeretne?";
+  }
+}
 </script>
 
 <p>
@@ -143,7 +153,7 @@ Adja meg a műsor pontos időpontját!
 : <input type="text" placeholder="perc" maxlength="2" size="2" id="to-min" onchange="calculate()" onclick="calculate()"/>
 <span id="mp2" style="display: none">: <input type="text" placeholder="mp" maxlength="2" size="2" id="to-sec" onchange="calculate()" onclick="calculate()"/></span>
 -ig&nbsp;&nbsp;
-<span style="font-size: 80%">(váltás <a href="#" onclick="switch_display_sec()"><span id="pmp">másodperc</span></a> pontosságra)</span>
+<span class="normal-smaller">(váltás <a href="#" onclick="switch_display_sec()"><span id="pmp">másodperc</span></a> pontosságra)</span>
 </p>
 
 <!-- for debugging set "display: inline" -->
@@ -192,6 +202,23 @@ A friss anyagok általában egy nappal később kerülnek fel.
   data-size="small"
   data-share="false">
 </span>
+
+<p>
+<span id="download_info" style="display: none; margin: 1em" class="normal-smaller">
+Amennyiben lejátszás helyett letölteni szeretné a műsorokat, ezt Firefox böngészővel teheti meg egyszerűen.
+<br/>
+Menjen a <a href="about:config"><code>about:config</code></a> oldalra, utána Enter és állítsa a <code>media.play-stand-alone</code> tulajdonságot <code>false</code>-ra.
+<br/>
+Innentől kezdve a műsorok lejátszódás helyett letöltődnek.
+<br/>
+Ez egy globális beállítás, ami minden oldalon, minden médiafájlra vonatkozni fog!
+<br/>
+Chrome és egyéb böngészőkben nem találtunk megoldást erre. Ha Ön talált, kérjük írjon.
+</span>
+<span>
+<a href="#" onclick="switch_display_download_info()"><span id="download_info_lead">Lejátszás helyett <em>letölteni</em> szeretne?</span></a>
+</span>
+</p>
 
 <p>
 Köszönet.
